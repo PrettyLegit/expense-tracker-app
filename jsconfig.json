@@ -8,7 +8,7 @@
       "@assets/*": ["assets/*"]
     }
   },
-  "include": ["src", "assets", "src/App.js"],
+  "include": ["src", "assets"],
   //Add any build/compiled folders here to stop vscode searching those
   "exclude": ["node_modules", "build"]
 }
