@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const RecentExpenses = () => {
+const RecentExpensesScreen = () => {
   return (
     <View>
-      <Text>RecentExpenses</Text>
+      <Text>RecentExpensesScreen</Text>
     </View>
   );
 };
 
-export default RecentExpenses;
+export default RecentExpensesScreen;
 
 const styles = StyleSheet.create({});
