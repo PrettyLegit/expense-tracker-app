@@ -1,12 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { ExpensesOutput } from "@src/components/ExpenseWidgets";
 
 const AllExpensesScreen = () => {
-  return (
-    <View>
-      <Text>AllExpensesScreen</Text>
-    </View>
-  );
+  return <ExpensesOutput expensesPeriod={"Total"} />;
 };
 
 export default AllExpensesScreen;
