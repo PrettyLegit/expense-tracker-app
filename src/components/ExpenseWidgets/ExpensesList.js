@@ -1,5 +1,5 @@
 import ExpenseItem from "@src/components/ExpenseWidgets/ExpenseItem";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 
 function renderExpenseItem(itemData) {
   return <ExpenseItem {...itemData.item} />;
