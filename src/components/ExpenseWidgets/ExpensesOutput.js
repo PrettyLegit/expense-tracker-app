@@ -1,6 +1,6 @@
 import ExpensesList from "@src/components/ExpenseWidgets/ExpensesList";
 import ExpenseSummary from "@src/components/ExpenseWidgets/ExpensesSummary";
-import { GlobalStyles } from "@src/utils/styles";
+import { GlobalStyles } from "@src/styles/styles";
 import { StyleSheet, View, Text } from "react-native";
 
 const ExpensesOutput = ({ expenses, expensesPeriod, fallBackText }) => {

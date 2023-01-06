@@ -1,4 +1,4 @@
-import { GlobalStyles } from "@src/utils/styles";
+import { GlobalStyles } from "@src/styles/styles";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 
 const Input = ({ label, style, invalid, textInputConfig }) => {

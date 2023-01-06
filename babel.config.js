@@ -18,5 +18,27 @@ module.exports = function (api) {
       ],
       "react-native-reanimated/plugin",
     ],
+    env: {
+      production: {
+        plugins: [
+          [
+            "inline-dotenv",
+            {
+              path: ".env.production",
+            },
+          ],
+        ],
+      },
+      development: {
+        plugins: [
+          [
+            "inline-dotenv",
+            {
+              path: ".env.development",
+            },
+          ],
+        ],
+      },
+    },
   };
 };

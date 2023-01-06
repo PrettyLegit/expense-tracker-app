@@ -1,7 +1,8 @@
 import ExpenseForm from "@src/components/ManageExpense/ExpenseForm";
 import { ExpensesContext } from "@src/context/expenses-context";
+import { GlobalStyles } from "@src/styles/styles";
 import IconButton from "@src/UI/IconButton";
-import { GlobalStyles } from "@src/utils/styles";
+import { deleteExpense, storeExpense, updateExpense } from "@src/utils/http";
 import { useContext, useLayoutEffect } from "react";
 import { StyleSheet, View } from "react-native";
 
@@ -21,20 +22,23 @@ const ManageExpensesScreen = ({ route, navigation }) => {
     });
   }, [navigation, isEditing]);
 
-  function deleteExpenseHandler() {
-    navigation.goBack();
+  async function deleteExpenseHandler() {
+    await deleteExpense(editedExpenseId);
     expensesCtx.deleteExpense(editedExpenseId);
+    navigation.goBack();
   }
 
   function cancelHandler() {
     navigation.goBack();
   }
 
-  function confirmHandler(expenseData) {
+  async function confirmHandler(expenseData) {
     if (isEditing) {
       expensesCtx.updateExpense(editedExpenseId, expenseData);
+      await updateExpense(editedExpenseId, expenseData);
     } else {
-      expensesCtx.addExpense(expenseData);
+      const id = await storeExpense(expenseData);
+      expensesCtx.addExpense({ ...expenseData, id: id });
     }
     navigation.goBack();
   }

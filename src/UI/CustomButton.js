@@ -1,4 +1,4 @@
-import { GlobalStyles } from "@src/utils/styles";
+import { GlobalStyles } from "@src/styles/styles";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 const CustomButton = ({ children, onPress, mode, customStyle }) => {

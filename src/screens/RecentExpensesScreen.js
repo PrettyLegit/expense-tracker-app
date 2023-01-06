@@ -1,11 +1,20 @@
 import { ExpensesOutput } from "@src/components/ExpenseWidgets";
 import { ExpensesContext } from "@src/context/expenses-context";
 import { getDateMinusDays } from "@src/utils/date";
-import { useContext } from "react";
+import { fetchExpenses } from "@src/utils/http";
+import { useContext, useEffect } from "react";
 import { StyleSheet } from "react-native";
 
 const RecentExpensesScreen = () => {
   const expensesCtx = useContext(ExpensesContext);
+
+  useEffect(() => {
+    async function getExpenses() {
+      const expenses = await fetchExpenses();
+      expensesCtx.setExpenses(expenses);
+    }
+    getExpenses();
+  }, []);
 
   const recentExpenses = expensesCtx.expenses.filter((expense) => {
     const today = new Date();
@@ -13,6 +22,7 @@ const RecentExpensesScreen = () => {
 
     return expense.date >= date7DaysAgo && expense.date <= today;
   });
+
   return (
     <ExpensesOutput
       expenses={recentExpenses}

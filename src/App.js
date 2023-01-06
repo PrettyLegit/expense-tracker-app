@@ -7,7 +7,7 @@ import AllExpensesScreen from "@src/screens/AllExpensesScreen";
 import ManageExpensesScreen from "@src/screens/ManageExpensesScreen";
 import RecentExpensesScreen from "@src/screens/RecentExpensesScreen";
 import IconButton from "@src/UI/IconButton";
-import { GlobalStyles } from "@src/utils/styles";
+import { GlobalStyles } from "@src/styles/styles";
 import { registerRootComponent } from "expo";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";

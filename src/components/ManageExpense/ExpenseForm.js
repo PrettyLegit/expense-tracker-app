@@ -1,7 +1,7 @@
 import Input from "@src/components/ManageExpense/Input";
 import CustomButton from "@src/UI/CustomButton";
 import { getFormattedDate } from "@src/utils/date";
-import { GlobalStyles } from "@src/utils/styles";
+import { GlobalStyles } from "@src/styles/styles";
 import { useState } from "react";
 import { StyleSheet, Text, View, Alert } from "react-native";
 
