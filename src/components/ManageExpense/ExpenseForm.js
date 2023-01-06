@@ -1,6 +1,7 @@
 import Input from "@src/components/ManageExpense/Input";
 import CustomButton from "@src/UI/CustomButton";
 import { getFormattedDate } from "@src/utils/date";
+import { GlobalStyles } from "@src/utils/styles";
 import { useState } from "react";
 import { StyleSheet, Text, View, Alert } from "react-native";
 
@@ -83,6 +84,7 @@ const ExpenseForm = ({
         <Input
           label={"Amount"}
           style={styles.rowInput}
+          invalid={!inputs.amount.isValid}
           textInputConfig={{
             keyboardType: "decimal-pad",
             onChangeText: inputChangedHandler.bind(this, "amount"),
@@ -92,6 +94,7 @@ const ExpenseForm = ({
         <Input
           label={"Date"}
           style={styles.rowInput}
+          invalid={!inputs.date.isValid}
           textInputConfig={{
             placeholder: "YYYY-MM-DD",
             maxLength: 10,
@@ -103,6 +106,7 @@ const ExpenseForm = ({
 
       <Input
         label={"Description"}
+        invalid={!inputs.description.isValid}
         textInputConfig={{
           multiline: true,
           // autoCorrect: false,
@@ -112,7 +116,7 @@ const ExpenseForm = ({
         }}
       />
 
-      {formIsInvalid && <Text>Invalid Input value</Text>}
+      {formIsInvalid && <Text style={styles.errorText}>Invalid Input value</Text>}
 
       <View style={styles.buttonsContainer}>
         <CustomButton
@@ -152,6 +156,12 @@ const styles = StyleSheet.create({
 
   rowInput: {
     flex: 1,
+  },
+
+  errorText: {
+    textAlign: "center",
+    color: GlobalStyles.colors.error500,
+    margin: 8,
   },
 
   button: {
