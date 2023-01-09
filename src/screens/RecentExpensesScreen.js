@@ -1,20 +1,27 @@
 import { ExpensesOutput } from "@src/components/ExpenseWidgets";
 import { ExpensesContext } from "@src/context/expenses-context";
+import LoadingOverlay from "@src/UI/LoadingOverlay";
 import { getDateMinusDays } from "@src/utils/date";
 import { fetchExpenses } from "@src/utils/http";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
 const RecentExpensesScreen = () => {
+  const [isFetching, setIsFetching] = useState(true);
   const expensesCtx = useContext(ExpensesContext);
 
   useEffect(() => {
     async function getExpenses() {
       const expenses = await fetchExpenses();
+      setIsFetching(false);
       expensesCtx.setExpenses(expenses);
     }
     getExpenses();
   }, []);
+
+  if (isFetching) {
+    return <LoadingOverlay />;
+  }
 
   const recentExpenses = expensesCtx.expenses.filter((expense) => {
     const today = new Date();
