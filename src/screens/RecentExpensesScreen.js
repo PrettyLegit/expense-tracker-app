@@ -1,5 +1,6 @@
 import { ExpensesOutput } from "@src/components/ExpenseWidgets";
 import { ExpensesContext } from "@src/context/expenses-context";
+import ErrorOverlay from "@src/UI/ErrorOverlay";
 import LoadingOverlay from "@src/UI/LoadingOverlay";
 import { getDateMinusDays } from "@src/utils/date";
 import { fetchExpenses } from "@src/utils/http";
@@ -8,16 +9,26 @@ import { StyleSheet } from "react-native";
 
 const RecentExpensesScreen = () => {
   const [isFetching, setIsFetching] = useState(true);
+  const [error, setError] = useState();
+
   const expensesCtx = useContext(ExpensesContext);
 
   useEffect(() => {
     async function getExpenses() {
-      const expenses = await fetchExpenses();
+      try {
+        const expenses = await fetchExpenses();
+        expensesCtx.setExpenses(expenses);
+      } catch {
+        setError("Could not fetch expenses. Please try again later.");
+      }
       setIsFetching(false);
-      expensesCtx.setExpenses(expenses);
     }
     getExpenses();
   }, []);
+
+  if (error && !isFetching) {
+    return <ErrorOverlay message={error} />;
+  }
 
   if (isFetching) {
     return <LoadingOverlay />;
